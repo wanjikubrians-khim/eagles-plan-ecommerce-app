@@ -1,0 +1,26 @@
+{% extends 'ecommerce_app/base.html' %}
+{% load static %}
+
+{% block title %}Cart - MyShop{% endblock %}
+
+{% block content %}
+  <h1>Your Cart 🛒</h1>
+
+  {% if cart|length == 0 %}
+    <div class="cart-container">
+      <p>Your cart is currently empty.</p>
+      <a href="/" class="btn">Continue Shopping</a>
+    </div>
+  {% else %}
+    <ul class="cart-items">
+      {% for item in cart %}
+        <li>
+          {{ item.product.name }} — {{ item.quantity }} × KSh {{ item.product.price }} =
+          <strong>KSh {{ item.total_price }}</strong>
+        </li>
+      {% endfor %}
+    </ul>
+    <h3>Total: KSh {{ cart.get_total_price }}</h3>
+    <a href="{% url 'checkout' %}" class="btn">Proceed to Checkout</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'ecommerce_app/base.html' %}
+{% block title %}Contact Us - MyShop{% endblock %}
+
+{% block content %}
+  <h1>Contact Us</h1>
+  <p>Have a question or need a quote? Reach out using the form or links below.</p>
+
+  <div class="contact-links">
+    <a href="mailto:info@myshop.co.ke" class="btn">📧 Email Us</a>
+    <a href="https://wa.me/254712345678" target="_blank" class="btn">💬 WhatsApp</a>
+  </div>
+
+  <form method="post" class="contact-form">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+{% endblock %}

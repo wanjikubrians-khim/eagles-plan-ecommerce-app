@@ -1,0 +1,70 @@
+{% extends 'ecommerce_app/base.html' %}
+{% load static %}
+
+{% block title %}Home - MyShop General Supplies{% endblock %}
+
+{% block content %}
+  <h1 data-aos="fade-down">Welcome to MyShop General Supplies</h1>
+  <p data-aos="fade-up" data-aos-delay="100">
+    Your one-stop solution for cleaning materials & manufactured goods
+  </p>
+
+  <!-- Category Section -->
+  <h2 data-aos="fade-up" data-aos-delay="200">🗂️ Shop by Category</h2>
+  <div class="category-grid">
+    <a href="#" class="category-card" data-aos="zoom-in">
+      <img src="https://via.placeholder.com/200x150" alt="Cleaning Products">
+      <h3>Cleaning Products</h3>
+    </a>
+    <a href="#" class="category-card" data-aos="zoom-in" data-aos-delay="100">
+      <img src="https://via.placeholder.com/200x150" alt="Manufactured Goods">
+      <h3>Manufactured Goods</h3>
+    </a>
+  </div>
+
+  <!-- Featured Products from DB -->
+  <h2 data-aos="fade-up" data-aos-delay="300">🔥 Featured Products</h2>
+  <div class="product-grid">
+    {% for product in products %}
+      <div class="product-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'1' }}00">
+        <img src="{{ product.image.url|default:'/static/product_images/default.jpeg' }}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description|truncatechars:80 }}</p>
+        <strong>KSh {{ product.price }}</strong>
+        <a href="{% url 'add_to_cart' product.id %}">
+          <button>Add to Cart</button>
+        </a>
+      </div>
+    {% empty %}
+      <p>No products available at the moment. Please check back soon!</p>
+    {% endfor %}
+  </div>
+
+  <!-- Cleaning Products (static examples) -->
+  <h2 data-aos="fade-right" data-aos-delay="300">🧼 Cleaning Products</h2>
+  <div class="product-grid">
+    <div class="product-card" data-aos="fade-up">
+      <img src="https://via.placeholder.com/200" alt="Liquid Soap">
+      <h3>Liquid Soap</h3>
+      <p>KSh 500</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://via.placeholder.com/200" alt="Disinfectant Spray">
+      <h3>Disinfectant Spray</h3>
+      <p>KSh 750</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://via.placeholder.com/200" alt="Cleaning Gloves">
+      <h3>Cleaning Gloves (Pair)</h3>
+      <p>KSh 250</p>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Manufactured Goods (static examples) -->
+  <h2 data-aos="fade-left" data-aos-delay="300">🏭 Manufactured Goods</h2>
+  <div class="product-grid">
+    <div class="product-card" data-aos="fade-up">
+      <img src="https://via.p
